@@ -21,6 +21,21 @@ class TextStatsTest < ActiveSupport::TestCase
     assert_equal 2, TextStats.new("Wait... what?!").sentence_count
   end
 
+  test "does not end a sentence after Mr. or other abbreviations" do
+    assert_equal 1, TextStats.new("Mr. Bean").sentence_count
+    assert_equal 1, TextStats.new("Mr.Bean").sentence_count
+    assert_equal 1, TextStats.new("Mr. Bean met Dr. Smith in the U.S. today.").sentence_count
+    assert_equal 2, TextStats.new("Mr. Bean laughed. Mrs. Wicket did not!").sentence_count
+  end
+
+  test "does not end a sentence inside a number" do
+    assert_equal 1, TextStats.new("Pi is 3.14 today").sentence_count
+  end
+
+  test "ignores punctuation with no words" do
+    assert_equal 0, TextStats.new("... ?!").sentence_count
+  end
+
   test "handles empty text" do
     stats = TextStats.new(nil)
     assert_equal 0, stats.word_count

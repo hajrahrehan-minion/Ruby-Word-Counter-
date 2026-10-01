@@ -1,8 +1,8 @@
 <main class="counter">
   <h1>Word Counter</h1>
 
-  <%# turbo: false makes this a plain HTML form: submitting reloads the whole page. %>
-  <%= form_with url: root_path, data: { turbo: false }, class: "counter-form" do |form| %>
+  <%# A plain HTML form: submitting reloads the whole page. %>
+  <%= form_with url: root_path, class: "counter-form" do |form| %>
     <%= form.label :text, "Paste or type your text" %>
     <%= form.text_area :text, value: @stats.text, rows: 12 %>
     <%= form.submit "Count" %>

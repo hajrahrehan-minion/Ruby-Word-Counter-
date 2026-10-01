@@ -30,6 +30,5 @@ bin/bundler-audit         # gem vulnerability audit
 ## Architecture
 
 - **Stack:** Rails 8.1 "omakase" defaults — no JavaScript, Propshaft for assets, SQLite for everything.
-- **Databases:** dev/test use a single SQLite DB in `storage/`. Production uses four SQLite DBs (primary, cache, queue, cable) — Solid Cache, Solid Queue, and Solid Cable each have their own schema file (`db/*_schema.rb`) and migration path (`db/*_migrate`).
-- **Background jobs:** Solid Queue (`bin/jobs`), no Redis.
-- **Deployment:** Kamal (`config/deploy.yml`, `.kamal/`) with the root `Dockerfile`, served via Thruster in front of Puma.
+- **Database:** SQLite in `storage/`, with no tables. It's only there so Rails boots cleanly.
+- **Deployment:** none. The app only runs locally; there's no Docker, Kamal, or background job setup.

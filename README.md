@@ -38,14 +38,3 @@ bin/rails test test/models/text_stats_test.rb  # one file
 bin/rubocop                                    # style
 bin/ci                                         # everything CI runs
 ```
-
-## Ruby practice assignment
-
-`assignment/` is a separate, plain-Ruby exercise (not loaded by the app) that rebuilds a word counter step by step to practise classes, enumerables, hashes, and blocks.
-
-```bash
-cd assignment
-ruby check.rb   # grades your progress one checkpoint at a time
-```
-
-See `assignment/CHECKPOINTS.md` for the prompts at each step.

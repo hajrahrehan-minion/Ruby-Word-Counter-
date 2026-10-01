@@ -1,11 +1,25 @@
 <main class="counter">
   <h1>Word Counter</h1>
 
-  <%= form_with url: count_path, class: "counter-form" do |form| %>
+  <%# turbo: false makes this a plain HTML form: submitting reloads the whole page. %>
+  <%= form_with url: root_path, data: { turbo: false }, class: "counter-form" do |form| %>
     <%= form.label :text, "Paste or type your text" %>
     <%= form.text_area :text, value: @stats.text, rows: 12 %>
     <%= form.submit "Count" %>
   <% end %>
 
-  <%= render "results", stats: @stats %>
+  <dl class="counter-results">
+    <div>
+      <dt>Words</dt>
+      <dd><%= @stats.word_count %></dd>
+    </div>
+    <div>
+      <dt>Characters</dt>
+      <dd><%= @stats.character_count %></dd>
+    </div>
+    <div>
+      <dt>Sentences</dt>
+      <dd><%= @stats.sentence_count %></dd>
+    </div>
+  </dl>
 </main>

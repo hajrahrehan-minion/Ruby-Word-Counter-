@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project state
 
-`word_counter` is a Rails 8.1 app (Ruby 3.4.4) with no database tables. `PagesController#home` (root) renders a form; it POSTs to `PagesController#count`, which builds a `TextStats` (plain Ruby class in `app/models/`) and replies with a Turbo Stream replacing `#results`. Turbo requires form submissions to redirect or stream, so don't change `count` to render a plain 200 HTML page.
+`word_counter` is a deliberately beginner-friendly Rails 8.1 app with no database tables. `GET /` and `POST /` both go to `PagesController#home`, which builds a `TextStats` (plain Ruby class in `app/models/`) from `params[:text]` and renders `home.html.erb`. The form uses `data: { turbo: false }` so it submits as a plain HTML form; that's why rendering a 200 page from a POST works. Keep it simple: the user asked for the app to be as plain as possible, so avoid Turbo Streams, partials, extra actions, or clever regexes.
 
 `assignment/` is the user's Ruby learning exercise (skeleton `word_counter.rb`, grader `check.rb`, prompts in `CHECKPOINTS.md`). It's not part of the app. Don't fill in the skeleton or hand out solutions; the user works through it checkpoint by checkpoint.
 

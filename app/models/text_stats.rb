@@ -1,23 +1,23 @@
+# Counts the words, characters and sentences in a piece of text.
 class TextStats
-  # Letters/digits, allowing inner apostrophes or hyphens ("don't", "well-known")
-  WORD = /[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/
-  SENTENCE_END = /[.!?]+/
-
   attr_reader :text
 
   def initialize(text)
-    @text = text.to_s
+    @text = text.to_s # turns nil into "" so the counts below never crash
   end
 
+  # Splits the text on spaces: "Hello there, friend!" => ["Hello", "there,", "friend!"]
   def word_count
-    text.scan(WORD).size
+    text.split.size
   end
 
+  # Every character counts, including spaces and punctuation.
   def character_count
     text.length
   end
 
+  # Cuts the text at . ! or ? and counts the pieces that aren't blank.
   def sentence_count
-    text.split(SENTENCE_END).count { |sentence| sentence.match?(WORD) }
+    text.split(/[.!?]+/).count { |piece| piece.strip != "" }
   end
 end

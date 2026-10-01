@@ -46,7 +46,7 @@ irb -r ./word_counter.rb
 ### Explain-back
 1. Why `scan` instead of `split` here?
 2. Your `word_count` should call `words` rather than redo the work. Why does that matter?
-3. Look at the `"Café"` prediction. Your Rails app's `TextStats` uses `\p{L}` instead of `a-z`. What does that fix?
+3. Your Rails app's `TextStats` counts words with plain `text.split`. Using your predictions, what does your `words` method get right that `split` doesn't? And what does the `"Café"` prediction show that *your* version gets wrong?
 
 ### Break-it
 - Remove `.downcase`. Which checks fail? Which *later* method (checkpoints 4 and 6) would quietly give wrong answers instead of crashing?

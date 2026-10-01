@@ -1,6 +1,6 @@
 # Word Counter
 
-A small Rails 8 app: paste a block of text and get its word, character and sentence counts, updated in place without a page reload.
+A small, beginner-friendly Rails 8 app: paste a block of text and get its word, character and sentence counts.
 
 ## Requirements
 
@@ -23,17 +23,13 @@ Then open http://localhost:3000.
 
 ## How it works
 
-| Piece | Role |
-|---|---|
-| `app/models/text_stats.rb` | Plain Ruby class (no database table) that does the counting |
-| `app/controllers/pages_controller.rb` | `home` shows the form; `count` handles the submission |
-| `app/views/pages/` | The form, a `_results` partial, and a Turbo Stream that swaps in new results |
-
-Counting rules:
-
-- **Words:** runs of letters or digits in any language, keeping inner apostrophes and hyphens (`don't`, `well-known`, `café`)
-- **Characters:** every character, including spaces and punctuation
-- **Sentences:** text split on `.`, `!` and `?`. Repeated marks (`?!`, `...`) count as one ending, and a final sentence without punctuation still counts. Abbreviations like "Mr." are counted as sentence breaks.
+1. `config/routes.rb` sends `GET /` (open the page) and `POST /` (submit the form) to the same place: `PagesController#home`.
+2. `app/controllers/pages_controller.rb` builds a `TextStats` from the submitted text (`params[:text]`, empty on first visit).
+3. `app/views/pages/home.html.erb` shows the form with your text still in it, plus the three counts.
+4. `app/models/text_stats.rb` is a plain Ruby class (no database) that does the counting:
+   - **Words:** the text split on spaces. `"Hello there, friend!"` is 3 words.
+   - **Characters:** every character, including spaces and punctuation.
+   - **Sentences:** the text cut at `.`, `!` or `?`, counting the pieces that aren't blank. `...` and `?!` count as one ending, and "Mr." counts as a sentence break.
 
 ## Tests and checks
 

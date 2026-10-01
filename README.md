@@ -5,12 +5,11 @@ A small, beginner-friendly Rails 8 app: paste a block of text and get its word, 
 ## Requirements
 
 - Ruby 3.4.4 (see `.ruby-version`)
-- SQLite 3
 
 ## Run it
 
 ```bash
-bin/setup     # installs gems, prepares the database, starts the server
+bin/setup     # installs gems, starts the server
 ```
 
 Or, once set up:

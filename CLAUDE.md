@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project state
 
-`word_counter` is a deliberately beginner-friendly Rails 8.1 app with no database tables. `GET /` and `POST /` both go to `PagesController#home`, which builds a `TextStats` (plain Ruby class in `app/models/`) from `params[:text]` and renders `home.html.erb`. The form is a plain HTML form (no Turbo, no JavaScript), so rendering a 200 page from a POST works. Keep it simple: the user asked for the app to be as plain as possible, so avoid JavaScript, partials, extra actions, or clever regexes.
+`word_counter` is a deliberately beginner-friendly Rails 8.1 app with no database. `GET /` and `POST /` both go to `PagesController#home`, which builds a `TextStats` (plain Ruby class in `app/models/`) from `params[:text]` and renders `home.html.erb`. The form is a plain HTML form (no Turbo, no JavaScript), so rendering a 200 page from a POST works. Keep it simple: the user asked for the app to be as plain as possible, so avoid JavaScript, partials, extra actions, or clever regexes.
 
 `assignment/` is the user's Ruby learning exercise (skeleton `word_counter.rb`, grader `check.rb`, prompts in `CHECKPOINTS.md`). It's not part of the app. Don't fill in the skeleton or hand out solutions; the user works through it checkpoint by checkpoint.
 
@@ -25,10 +25,9 @@ bin/brakeman --no-pager   # security static analysis
 bin/bundler-audit         # gem vulnerability audit
 ```
 
-`bin/ci` runs: setup → rubocop → bundler-audit → brakeman (fails on warnings) → `bin/rails test` → `db:seed:replant` in test env. GitHub Actions (`.github/workflows/ci.yml`) runs the same checks as separate jobs.
+`bin/ci` runs: setup → rubocop → bundler-audit → brakeman (fails on warnings) → `bin/rails test`. GitHub Actions (`.github/workflows/ci.yml`) runs the same checks as separate jobs.
 
 ## Architecture
 
-- **Stack:** Rails 8.1 "omakase" defaults — no JavaScript, Propshaft for assets, SQLite for everything.
-- **Database:** SQLite in `storage/`, with no tables. It's only there so Rails boots cleanly.
+- **Stack:** Rails 8.1 "omakase" defaults — no JavaScript, Propshaft for assets, no database (Active Record isn't loaded).
 - **Deployment:** none. The app only runs locally; there's no Docker, Kamal, or background job setup.

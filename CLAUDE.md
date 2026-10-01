@@ -18,7 +18,6 @@ bin/ci                    # full local CI pipeline (defined in config/ci.rb)
 bin/rails test                                   # unit/integration tests
 bin/rails test test/models/foo_test.rb           # single file
 bin/rails test test/models/foo_test.rb:42        # single test by line
-bin/rails test:system                            # system tests (Capybara + Selenium/Chrome)
 
 bin/rubocop               # lint (rubocop-rails-omakase style); -a to autocorrect
 bin/brakeman --no-pager   # security static analysis

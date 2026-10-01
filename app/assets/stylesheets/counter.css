@@ -1,0 +1,49 @@
+.counter {
+  max-width: 48rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: system-ui, sans-serif;
+}
+
+.counter-form {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.counter-form textarea {
+  width: 100%;
+  font: inherit;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.counter-form input[type="submit"] {
+  justify-self: start;
+  padding: 0.5rem 1.25rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.counter-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.counter-results div {
+  flex: 1 1 8rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+}
+
+.counter-results dt {
+  color: #666;
+}
+
+.counter-results dd {
+  margin: 0.25rem 0 0;
+  font-size: 2rem;
+  font-weight: 600;
+}

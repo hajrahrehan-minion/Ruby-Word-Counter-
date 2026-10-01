@@ -1,0 +1,11 @@
+<main class="counter">
+  <h1>Word Counter</h1>
+
+  <%= form_with url: count_path, class: "counter-form" do |form| %>
+    <%= form.label :text, "Paste or type your text" %>
+    <%= form.text_area :text, value: @stats.text, rows: 12 %>
+    <%= form.submit "Count" %>
+  <% end %>
+
+  <%= render "results", stats: @stats %>
+</main>
